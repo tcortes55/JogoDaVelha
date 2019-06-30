@@ -28,11 +28,14 @@ O usuário é notificado nas seguintes situações:
 - partida não encontrada (não existe nenhuma partida com o ID informado)
 - partida finalizada (usuário tentou jogar numa partida já encerrada)
 - turno incorreto (usuário tentou jogar no turno do outro jogador)
-- posição já marcada
+- posição já marcada.
+
 Por conveniência, as mensagens estão hard-coded e em português.
 Numa situação real, poderiam estar armazenadas em arquivos de localização (ex: strings.resx) para permitir uso em outros idiomas, ou mesmo hard-coded porém atribuídas a variáveis, para manter o código mais limpo.
 
 Quando um jogador vence, ou quando se completam 9 jogadas (o que corresponde ao tabuleiro completo) sem vencedor, a partida é encerrada.
 
+
 Tarcisio Cortes
+
 2019
