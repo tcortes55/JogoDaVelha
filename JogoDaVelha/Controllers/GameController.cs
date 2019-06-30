@@ -13,29 +13,6 @@ namespace JogoDaVelha.Controllers
 {
     public class GameController : ApiController
     {
-        //// GET: api/Game
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        //// GET: api/Game/5
-        //public string Get(int id)
-        //{
-        //    Game myGame = new Game();
-        //    //myGame.map[0] = myGame.row0;
-        //    //myGame.map[1] = myGame.row1;
-        //    //myGame.map[2] = myGame.row2;
-
-        //    //myGame.map[2][2] = "X";
-
-        //    Game myGame2 = new Game();
-        //    //return "value";
-        //    //return myGame.map[2][2];
-        //    string lala = "mg1 = " + myGame.id.ToString() + "; mg2 = " + myGame2.id.ToString();
-        //    return lala;
-        //}
-
         // POST: /game
         [Route("game")]
         public IHttpActionResult Post()
@@ -63,6 +40,8 @@ namespace JogoDaVelha.Controllers
 
             // O jogo é salvo num arquivo XML. O nome do arquivo corresponde ao ID do jogo
             XmlSerializer xsMyGame = new XmlSerializer(typeof(Game));
+            // O diretório está hard-coded por conveniência por ser uma tarefa curta.
+            // Numa situação real, poderia ser armazenado no arquivo web.config, por exemplo.
             string path = @"c:\temp\dti\" + myGame.id + ".xml";
             TextWriter tw = new StreamWriter(path);
             xsMyGame.Serialize(tw, myGame);
@@ -84,6 +63,9 @@ namespace JogoDaVelha.Controllers
             // Somente os valores "X" e "O" são aceitos para a jogada
             if (player != "X" && player != "O")
             {
+                // As mensagens ao usuário estão hard-coded por conveniência por ser uma tarefa curta.
+                // Numa situação real, poderiam estar armazenadas em arquivos de configuração, banco de dados,
+                // ou mesmo hard-coded porém atribuídas a variáveis.
                 return Ok(new { msg = "Jogada inválida; jogue um X ou O" });
             }
 
