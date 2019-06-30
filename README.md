@@ -35,6 +35,9 @@ Numa situação real, poderiam estar armazenadas em arquivos de localização (e
 
 Quando um jogador vence, ou quando se completam 9 jogadas (o que corresponde ao tabuleiro completo) sem vencedor, a partida é encerrada.
 
+Obs: a solução contém os controllers, páginas e outros arquivos gerados automaticamente pelo Visual Studio durante a criação do projeto.
+Não os removi porque eles podem ser úteis para alguma melhoria ou nova funcionalidade, por exemplo, adicionar autenticação ou uma página para interface com o usuário.
+
 
 Tarcisio Cortes
 
