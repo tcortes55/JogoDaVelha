@@ -40,9 +40,15 @@ namespace JogoDaVelha.Controllers
 
             // O jogo é salvo num arquivo XML. O nome do arquivo corresponde ao ID do jogo
             XmlSerializer xsMyGame = new XmlSerializer(typeof(Game));
+
             // O diretório está hard-coded por conveniência por ser uma tarefa curta.
             // Numa situação real, poderia ser armazenado no arquivo web.config, por exemplo.
             string path = @"c:\temp\dti\" + myGame.id + ".xml";
+
+            // Se o diretório não existe, vamos criá-lo...
+            System.IO.FileInfo file = new System.IO.FileInfo(path);
+            file.Directory.Create();
+
             TextWriter tw = new StreamWriter(path);
             xsMyGame.Serialize(tw, myGame);
             tw.Close();
