@@ -13,6 +13,9 @@ namespace JogoDaVelha.Controllers
 {
     public class GameController : ApiController
     {
+        private const int MIN_NUM_FOR_ENDING = 5;
+        private const int MAX_NUM_ROUNDS = 9;
+
         // POST: /game
         [Route("game")]
         public IHttpActionResult Post()
@@ -70,8 +73,8 @@ namespace JogoDaVelha.Controllers
             if (player != "X" && player != "O")
             {
                 // As mensagens ao usuário estão hard-coded por conveniência por ser uma tarefa curta.
-                // Numa situação real, poderiam estar armazenadas em arquivos de configuração, banco de dados,
-                // ou mesmo hard-coded porém atribuídas a variáveis.
+                // Numa situação real, poderiam estar armazenadas em arquivos de localização (ex: strings.resx),
+                // ou mesmo hard-coded porém atribuídas a variáveis para manter o código mais limpo.
                 return Ok(new { msg = "Jogada inválida; jogue um X ou O" });
             }
 
@@ -159,7 +162,7 @@ namespace JogoDaVelha.Controllers
 
         private string CheckForWinner(Game game)
         {
-            if (game.numRounds < 5)
+            if (game.numRounds < MIN_NUM_FOR_ENDING)
             {
                 // Impossível que o jogo tenha acabado com menos de 5 rodadas
                 return string.Empty;
@@ -201,7 +204,7 @@ namespace JogoDaVelha.Controllers
             }
 
             //Se nenhum vencedor foi identificado e já se passaram 9 rodadas, houve um empate
-            if (String.IsNullOrEmpty(winner) && game.numRounds == 9)
+            if (String.IsNullOrEmpty(winner) && game.numRounds == MAX_NUM_ROUNDS)
             {
                 winner = "Draw";
             }
